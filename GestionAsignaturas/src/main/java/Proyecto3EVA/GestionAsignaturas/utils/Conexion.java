@@ -12,7 +12,7 @@ import java.util.List;
 public class Conexion {
 	private static Connection con;
 	private final static String server="jdbc:mysql://localhost";
-	private final static String database="test";
+	private final static String database="instituto";
 	private final static String username="root";
 	private final static String password="";
 	public static void conecta() {

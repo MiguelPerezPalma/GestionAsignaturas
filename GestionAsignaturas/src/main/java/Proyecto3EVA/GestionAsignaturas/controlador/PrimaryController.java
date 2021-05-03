@@ -1,4 +1,4 @@
-package Proyecto3EVA.GestionAsignaturas;
+package Proyecto3EVA.GestionAsignaturas.controlador;
 
 import java.io.IOException;
 
