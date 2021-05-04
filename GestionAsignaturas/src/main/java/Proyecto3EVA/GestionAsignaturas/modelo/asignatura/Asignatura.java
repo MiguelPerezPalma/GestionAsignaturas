@@ -5,9 +5,9 @@ import java.util.List;
 import Proyecto3EVA.GestionAsignaturas.modelo.entrada.entrada;
 
 public class Asignatura {
-	private int Id;
-	private String Nombre;
-	private List<entrada> entradas;
+	protected int Id;
+	protected String Nombre;
+	protected List<entrada> entradas;
 	public Asignatura(int id, String nombre, List<entrada> entradas) {
 		super();
 		Id = id;
@@ -36,6 +36,11 @@ public class Asignatura {
 	}
 	public void setEntradas(List<entrada> entradas) {
 		this.entradas = entradas;
+	}
+
+	@Override
+	public String toString() {
+		return "Asignatura [Id=" + Id + ", Nombre=" + Nombre + ", entradas=" + entradas + "]";
 	}
 	
 }

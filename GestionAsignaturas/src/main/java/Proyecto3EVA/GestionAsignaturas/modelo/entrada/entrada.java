@@ -55,5 +55,11 @@ public class entrada {
 	public void setAsignatura(Asignatura asignatura) {
 		this.asignatura = asignatura;
 	}
+
+	@Override
+	public String toString() {
+		return "entrada [fecha=" + fecha + ", Nombre=" + Nombre + ", Cod=" + Cod + ", Informacion=" + Informacion
+				+ ", asignatura=" + asignatura + "]";
+	}
 	
 }
