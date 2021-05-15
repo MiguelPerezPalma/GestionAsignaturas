@@ -15,6 +15,7 @@ public class Conexion {
 	private final static String database="instituto";
 	private final static String username="root";
 	private final static String password="";
+	
 	public static void conecta() {
 		 try {
 			Class.forName("com.mysql.cj.jdbc.Driver");

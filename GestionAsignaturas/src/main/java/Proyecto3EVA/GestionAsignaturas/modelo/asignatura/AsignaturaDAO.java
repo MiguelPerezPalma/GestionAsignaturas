@@ -9,14 +9,14 @@ import java.util.List;
 
 import Proyecto3EVA.GestionAsignaturas.modelo.entrada.entrada;
 import Proyecto3EVA.GestionAsignaturas.utils.Conexion;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 public class AsignaturaDAO extends Asignatura{
 	private final static String GETBYID = "SELECT Id,Nombre FROM Asignatura WHERE dni=";
 	private final static String INSERTUPDATE="INSERT INTO Asignatura (Id,Nombre) ";
 	private static final String DELETE="DELETE FROM Asignatura WHERE Cod=?";
-	public AsignaturaDAO(int id, String nombre, List<entrada> entradas) {
-		super(id, nombre, entradas);
-	}
+	private final static String SELECTASIGNATURAS = "SELECT ID,NOMBRE FROM Asignatura ";
 	public AsignaturaDAO() {
 		super();
 	}
@@ -89,4 +89,27 @@ public class AsignaturaDAO extends Asignatura{
     public static List<entrada> selectAll(){
         return selectAll();
   }
+	public static ObservableList<Asignatura> buscarTodasAsignaturas() {
+		ObservableList<Asignatura> result = FXCollections.observableArrayList();
+		Connection con = Conexion.getConexion();
+		if (con != null) {
+			try {
+				PreparedStatement q = con.prepareStatement(SELECTASIGNATURAS);
+				ResultSet rs = q.executeQuery();
+				while (rs.next()) {
+					Asignatura a = new Asignatura();
+					a.setId(rs.getInt("Id"));
+					a.setNombre(rs.getString("Nombre"));
+					System.out.println(a);
+					result.add(a);
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+
+		return result;
+	}
+	
 }

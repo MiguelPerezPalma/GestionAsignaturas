@@ -8,14 +8,18 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDate;
 
+
 import Proyecto3EVA.GestionAsignaturas.modelo.asignatura.Asignatura;
 import Proyecto3EVA.GestionAsignaturas.utils.Conexion;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 public class entradaDAO extends entrada{
 	private static final String GETBCOD="SELECT fecha,Cod,Nombre,informacion,id_Asignatura as Asignatura FROM entrada WHERE Cod=";
 	private final static String INSERTUPDATE="INSERT INTO entrada (fecha,Cod,Nombre,informacion,id_Asignatura) ";
 	private static final String DELETE="DELETE FROM entrada WHERE Cod=?";
-	public entradaDAO(Date fecha, String nombre, int cod, String informacion, Asignatura asignatura) {
+	private final static String SELECTENTRADA = "SELECT COD,NOMBRE,INFORMACION FROM entrada ";
+	public entradaDAO(LocalDate fecha, String nombre, int cod, String informacion, Asignatura asignatura) {
 		super(fecha, nombre, cod, informacion, asignatura);
 	}
 
@@ -63,11 +67,10 @@ public class entradaDAO extends entrada{
 		if (con != null) {
 			try {
 				PreparedStatement q=con.prepareStatement(INSERTUPDATE);
-				q.setDate(1, this.fecha);
-				q.setInt(2, this.Cod);
-				q.setString(3, this.Nombre);
-				q.setString(4, this.Informacion);
-				q.setInt(5, this.asignatura.getId());
+				q.setInt(1, this.Cod);
+				q.setString(2, this.Nombre);
+				q.setString(3, this.Informacion);
+				q.setInt(4, this.asignatura.getId());
 				rs =q.executeUpdate();		
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
@@ -95,4 +98,27 @@ public class entradaDAO extends entrada{
 		return rs;
 	}
 	
+	public static ObservableList<entrada> buscarTodasEntradas() {
+		ObservableList<entrada> result = FXCollections.observableArrayList();
+		Connection con = Conexion.getConexion();
+		if (con != null) {
+			try {
+				PreparedStatement q = con.prepareStatement(SELECTENTRADA);
+				ResultSet rs = q.executeQuery();
+				while (rs.next()) {
+					entrada a = new entrada();
+					a.setCod(rs.getInt("Cod"));
+					a.setNombre(rs.getString("Nombre"));
+					a.setInformacion(rs.getString("Informacion"));
+					System.out.println(a);
+					result.add(a);
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+
+		return result;
+	}
 }

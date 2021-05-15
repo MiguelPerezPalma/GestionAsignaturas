@@ -13,15 +13,15 @@
    <children>
       <MenuBar layoutY="2.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <menus>
-          <Menu mnemonicParsing="false" text="File">
+          <Menu fx:id="con" mnemonicParsing="false" text="File">
             <items>
-              <MenuItem mnemonicParsing="false" text="Close" />
+              <MenuItem fx:id="closeApp" mnemonicParsing="false" text="Close" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Help">
-            <items>
+               <items>
               <MenuItem mnemonicParsing="false" text="About" />
-            </items>
+               </items>
           </Menu>
         </menus>
       </MenuBar>
@@ -29,19 +29,19 @@
         <items>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                <children>
-                  <TableView layoutY="6.0" prefHeight="374.0" prefWidth="175.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <TableView fx:id="tableAsignaturas" layoutY="6.0" prefHeight="374.0" prefWidth="175.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                     <columns>
-                      <TableColumn maxWidth="1.7976931348623157E308" prefWidth="116.79998165369034" text="Nombre" />
-                        <TableColumn maxWidth="1.7976931348623157E308" prefWidth="120.80001831054688" text="ID" />
+                      <TableColumn fx:id="nombrecolumna" maxWidth="1.7976931348623157E308" prefWidth="116.79998165369034" text="Nombre" />
+                        <TableColumn fx:id="idcolumna" maxWidth="1.7976931348623157E308" prefWidth="120.80001831054688" text="ID" />
                     </columns>
                   </TableView>
                </children>
             </AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                <children>
-                  <Button layoutX="183.0" layoutY="76.0" mnemonicParsing="false" text="Añadir" AnchorPane.bottomAnchor="272.0" AnchorPane.leftAnchor="150.0" AnchorPane.rightAnchor="150.0" AnchorPane.topAnchor="76.0" />
-                  <Button layoutX="183.0" layoutY="174.0" mnemonicParsing="false" text="Borrar" AnchorPane.bottomAnchor="174.0" AnchorPane.leftAnchor="150.0" AnchorPane.rightAnchor="150.0" AnchorPane.topAnchor="174.0" />
-                  <Button layoutX="183.0" layoutY="277.0" mnemonicParsing="false" text="Editar" AnchorPane.bottomAnchor="76.0" AnchorPane.leftAnchor="150.0" AnchorPane.rightAnchor="150.0" AnchorPane.topAnchor="272.0" />
+                  <Button layoutX="183.0" layoutY="76.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#switchToAñadirAsignatura" text="Añadir" AnchorPane.bottomAnchor="272.0" AnchorPane.leftAnchor="150.0" AnchorPane.rightAnchor="150.0" AnchorPane.topAnchor="76.0" />
+                  <Button layoutX="150.0" layoutY="280.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#borrarAsignatura" text="Borrar" AnchorPane.bottomAnchor="76.0" AnchorPane.leftAnchor="150.0" AnchorPane.rightAnchor="150.0" AnchorPane.topAnchor="272.0" />
+                  <Button layoutX="137.0" layoutY="174.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#switchToEntradas" text="Anotaciones" AnchorPane.bottomAnchor="174.0" AnchorPane.leftAnchor="137.0" AnchorPane.rightAnchor="136.0" AnchorPane.topAnchor="174.0" />
                </children>
             </AnchorPane>
         </items>

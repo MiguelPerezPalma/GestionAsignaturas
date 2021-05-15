@@ -2,17 +2,18 @@ package Proyecto3EVA.GestionAsignaturas.modelo.entrada;
 
 import java.sql.Date;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import Proyecto3EVA.GestionAsignaturas.modelo.asignatura.Asignatura;
 
 public class entrada {
-	protected Date fecha;
+	protected LocalDate fecha;
 	protected String Nombre;
 	protected int Cod;
 	protected String Informacion;
 	protected Asignatura asignatura;
 	
-	public entrada(Date fecha, String nombre, int cod, String informacion, Asignatura asignatura) {
+	public entrada(LocalDate fecha, String nombre, int cod, String informacion, Asignatura asignatura) {
 		this.fecha = fecha;
 		Nombre = nombre;
 		Cod = cod;
@@ -24,11 +25,11 @@ public class entrada {
 		this(null,"",-1,"",null);
 	}
 
-	public Date getFecha() {
+	public LocalDate getFecha() {
 		return fecha;
 	}
-	public void setFecha(Date fecha) {
-		this.fecha = fecha;
+	public void setFecha(LocalDate localDateTime) {
+		this.fecha = localDateTime;
 	}
 	public String getNombre() {
 		return Nombre;

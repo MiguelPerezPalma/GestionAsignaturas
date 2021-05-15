@@ -10,13 +10,13 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="603.0" prefWidth="821.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <MenuBar layoutY="2.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <menus>
-            <Menu mnemonicParsing="false" text="File">
+            <Menu fx:id="con" mnemonicParsing="false" text="File">
                <items>
-                  <MenuItem mnemonicParsing="false" text="Guardar" />
+                  <MenuItem fx:id="closeApp" mnemonicParsing="false" text="Guardar" />
                </items>
             </Menu>
             <Menu mnemonicParsing="false" text="Help">
@@ -26,14 +26,16 @@
             </Menu>
          </menus>
       </MenuBar>
-      <SplitPane dividerPositions="0.4096989966555184" layoutY="26.0" prefHeight="160.0" prefWidth="200.0" AnchorPane.bottomAnchor="-1.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="26.0">
+      <SplitPane dividerPositions="0.4230769230769231" layoutY="26.0" prefHeight="160.0" prefWidth="200.0" AnchorPane.bottomAnchor="-1.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="26.0">
          <items>
-            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="262.0">
                <children>
-                  <TableView layoutY="6.0" prefHeight="374.0" prefWidth="175.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <TableView fx:id="tableEntradas" layoutY="6.0" prefHeight="374.0" prefWidth="175.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <columns>
-                        <TableColumn maxWidth="1.7976931348623157E308" prefWidth="116.79998165369034" text="Fecha" />
-                        <TableColumn maxWidth="1.7976931348623157E308" prefWidth="124.79999389648438" text="Nombre" />
+                        <TableColumn fx:id="fechaColumna" maxWidth="1.7976931348623157E308" prefWidth="88.0" text="Fecha" />
+                        <TableColumn fx:id="nombrecolumna" maxWidth="1.7976931348623157E308" prefWidth="82.0" text="Nombre" />
+                        <TableColumn fx:id="codColumna" prefWidth="86.0" text="COD" />
+                        <TableColumn fx:id="asignaturacolumna" prefWidth="87.0" text="Asignatura" />
                      </columns>
                   </TableView>
                </children>
@@ -44,13 +46,12 @@
                     <items>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="248.0" prefWidth="354.0">
                            <children>
-                              <Label layoutX="14.0" layoutY="14.0" prefWidth="41.0" text="Label" />
+                              <Label fx:id="informacionLabel" layoutX="14.0" layoutY="14.0" prefWidth="41.0" text="Label" />
                            </children></AnchorPane>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" SplitPane.resizableWithParent="false">
                            <children>
-                              <Button layoutX="14.0" layoutY="8.0" mnemonicParsing="false" prefWidth="74.0" text="Añadir" />
-                              <Button layoutX="260.0" layoutY="9.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="74.0" text="Borrar" />
-                              <Button layoutX="137.0" layoutY="8.0" mnemonicParsing="false" prefWidth="74.0" text="Editar" />
+                              <Button layoutX="14.0" layoutY="8.0" mnemonicParsing="false" onAction="#switchToAñadirEntrada" prefWidth="74.0" text="Añadir" AnchorPane.leftAnchor="0.0" />
+                              <Button layoutX="260.0" layoutY="9.0" mnemonicParsing="false" onAction="#borrarEntradas" prefHeight="26.0" prefWidth="74.0" text="Borrar" AnchorPane.rightAnchor="0.0" />
                            </children>
                         </AnchorPane>
                     </items>
