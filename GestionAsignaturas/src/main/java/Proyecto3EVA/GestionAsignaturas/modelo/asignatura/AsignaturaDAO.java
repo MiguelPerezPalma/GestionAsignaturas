@@ -13,10 +13,10 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 public class AsignaturaDAO extends Asignatura{
-	private final static String GETBYID = "SELECT Id,Nombre FROM Asignatura WHERE dni=";
-	private final static String INSERTUPDATE="INSERT INTO Asignatura (Id,Nombre) ";
-	private static final String DELETE="DELETE FROM Asignatura WHERE Cod=?";
-	private final static String SELECTASIGNATURAS = "SELECT ID,NOMBRE FROM Asignatura ";
+	private final static String GETBYID = "SELECT Id,Nombre FROM asignatura WHERE dni=";
+	private final static String INSERTUPDATE="INSERT INTO asignatura (Id,Nombre) ";
+	private static final String DELETE="DELETE FROM asignatura WHERE Cod=?";
+	private final static String SELECTASIGNATURAS = "SELECT * FROM asignatura ";
 	public AsignaturaDAO() {
 		super();
 	}
@@ -26,6 +26,12 @@ public class AsignaturaDAO extends Asignatura{
 		this.Nombre=a.getNombre();
 	}
 	
+	public AsignaturaDAO(int id, String Nombre) {
+		super(id,Nombre);
+	}
+	public AsignaturaDAO(String Nombre) {
+		super(Nombre);
+	}
 	public AsignaturaDAO(int id) {
 		// getByID from mariaDB
 		// Conexion

@@ -1,7 +1,7 @@
 package Proyecto3EVA.GestionAsignaturas;
 
 import java.io.IOException;
-
+import java.util.List;
 import Proyecto3EVA.GestionAsignaturas.modelo.asignatura.Asignatura;
 import Proyecto3EVA.GestionAsignaturas.modelo.asignatura.AsignaturaDAO;
 import javafx.fxml.FXML;
@@ -11,7 +11,6 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
 public class AddAsignaturaController {
-	
 	@FXML
 	private TextField NombreTexF;
     @FXML
@@ -20,15 +19,14 @@ public class AddAsignaturaController {
     public void closeApp() {
     	System.exit(0);
     }
-	private AsignaturaDAO a;
 	
 	@FXML
 	private void guardarAsignatura() throws IOException {
-		if(a.getId() >=0) {			
-			a.setNombre(NombreTexF.getText());
-			a.guardar();
-			App.setRoot("primary");
-		}
+		String nombre=NombreTexF.getText();
+		Asignatura a=new Asignatura(nombre);
+		AsignaturaDAO ada=new AsignaturaDAO(a);
+		ada.guardar();
+		App.setRoot("primary");
 	}
 	
 	@FXML

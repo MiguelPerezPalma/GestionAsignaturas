@@ -11,18 +11,26 @@ public class entrada {
 	protected String Nombre;
 	protected int Cod;
 	protected String Informacion;
-	protected Asignatura asignatura;
+	protected int asignatura_id;
 	
-	public entrada(LocalDate fecha, String nombre, int cod, String informacion, Asignatura asignatura) {
+	public entrada(LocalDate fecha, String nombre, int cod, String informacion, int asignatura) {
 		this.fecha = fecha;
-		Nombre = nombre;
-		Cod = cod;
-		Informacion = informacion;
-		this.asignatura = asignatura;
+		this.Nombre = nombre;
+		this.Cod = cod;
+		this.Informacion = informacion;
+		this.asignatura_id=asignatura;
 	}
 	
+	public entrada(LocalDate fecha, String nombre, String informacion, int asignatura_Nombre) {
+		super();
+		this.fecha = fecha;
+		Nombre = nombre;
+		Informacion = informacion;
+		this.asignatura_id = asignatura_Nombre;
+	}
+
 	public entrada() {
-		this(null,"",-1,"",null);
+		this(null,"",-1,"",-1);
 	}
 
 	public LocalDate getFecha() {
@@ -50,17 +58,19 @@ public class entrada {
 	public void setInformacion(String informacion) {
 		Informacion = informacion;
 	}
-	public Asignatura getAsignatura() {
-		return asignatura;
+	public int getAsignatura() {
+		return asignatura_id;
 	}
-	public void setAsignatura(Asignatura asignatura) {
-		this.asignatura = asignatura;
+	public void setAsignatura(int asignatura) {
+		this.asignatura_id = asignatura;
 	}
 
 	@Override
 	public String toString() {
 		return "entrada [fecha=" + fecha + ", Nombre=" + Nombre + ", Cod=" + Cod + ", Informacion=" + Informacion
-				+ ", asignatura=" + asignatura + "]";
+				+ ", asignatura_Nombre=" + asignatura_id + "]";
 	}
+
+
 	
 }

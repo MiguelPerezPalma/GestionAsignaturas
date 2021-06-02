@@ -10,11 +10,21 @@ public class Asignatura {
 	protected List<entrada> entradas;
 	public Asignatura(int id, String nombre, List<entrada> entradas) {
 		super();
-		Id = id;
-		Nombre = nombre;
+		this.Id = id;
+		this.Nombre = nombre;
 		this.entradas = entradas;
 	}
 	
+	public Asignatura(int id, String nombre) {
+		super();
+		Id = id;
+		Nombre = nombre;
+	}
+	public Asignatura(String nombre) {
+		super();
+		Id = -1;
+		Nombre = nombre;
+	}
 	public Asignatura() {
 		this(-1,"",null);
 	}

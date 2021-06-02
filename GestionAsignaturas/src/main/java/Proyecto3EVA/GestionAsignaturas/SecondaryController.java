@@ -29,13 +29,14 @@ public class SecondaryController {
     private TableColumn<entrada, Integer> codColumna;
     
     @FXML
-    private TableColumn<entrada, String> asignaturacolumna;
+    private TableColumn<entrada, Integer> asignaturacolumna;
     
     @FXML
     private Label informacionLabel;
     
     @FXML
     private MenuItem con;
+    
     @FXML
     public void closeApp() {
     	System.exit(0);
@@ -45,6 +46,7 @@ public class SecondaryController {
     protected void initialize() {
     	muestraInfo(null);
     	codColumna.setCellValueFactory(new PropertyValueFactory<entrada, Integer>("Cod"));
+    	asignaturacolumna.setCellValueFactory(new PropertyValueFactory<entrada, Integer>("asignatura_id"));
     	configuratable();
     	List<entrada> todas=entradaDAO.buscarTodasEntradas();
     	tableEntradas.setItems(FXCollections.observableList(todas));
@@ -63,11 +65,6 @@ public class SecondaryController {
     	nombrecolumna.setCellValueFactory(cadaentrada->{
     		SimpleStringProperty v=new SimpleStringProperty();
     		v.setValue(cadaentrada.getValue().getNombre());
-    		return v;
-    	});
-    	asignaturacolumna.setCellValueFactory(cadaentrada->{
-    		SimpleStringProperty v=new SimpleStringProperty();
-    		v.setValue(cadaentrada.getValue().getAsignatura().getNombre());
     		return v;
     	});
     }
