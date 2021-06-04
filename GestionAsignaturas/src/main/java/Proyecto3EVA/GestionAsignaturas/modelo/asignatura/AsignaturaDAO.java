@@ -13,9 +13,9 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 public class AsignaturaDAO extends Asignatura{
-	private final static String GETBYID = "SELECT Id,Nombre FROM asignatura WHERE dni=";
-	private final static String INSERTUPDATE="INSERT INTO asignatura (Id,Nombre) ";
-	private static final String DELETE="DELETE FROM asignatura WHERE Cod=?";
+	private final static String GETBYID = "SELECT id,Nombre FROM asignatura WHERE id=";
+	private final static String INSERT="INSERT INTO asignatura (id,nombre) VALUES(?,?)";
+	private static final String DELETE="DELETE FROM asignatura WHERE id=?";
 	private final static String SELECTASIGNATURAS = "SELECT * FROM asignatura ";
 	public AsignaturaDAO() {
 		super();
@@ -54,15 +54,12 @@ public class AsignaturaDAO extends Asignatura{
 		}
 	}
 	public int guardar() {
-		// INSERT o UPDATE
-		//INSERT -> si no existe OK
-		//En caso de ERROR -> hago un update
 		int rs=0;
 		Connection con = Conexion.getConexion();
 		
 		if (con != null) {
 			try {
-				PreparedStatement q=con.prepareStatement(INSERTUPDATE);
+				PreparedStatement q=con.prepareStatement(INSERT);
 				q.setInt(1, this.Id);
 				q.setString(2, this.Nombre);
 				rs =q.executeUpdate();		

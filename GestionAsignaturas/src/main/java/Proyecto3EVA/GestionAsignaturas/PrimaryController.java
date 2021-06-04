@@ -38,7 +38,7 @@ public class PrimaryController {
 	@FXML
 	public void initialize() {
 		
-		idcolumna.setCellValueFactory(new PropertyValueFactory<Asignatura, Integer>("Id"));
+		idcolumna.setCellValueFactory(new PropertyValueFactory<Asignatura, Integer>("id"));
 		configuratable();
 		AsignaturaDAO a = new AsignaturaDAO();
     	List<Asignatura> todas=AsignaturaDAO.buscarTodasAsignaturas();

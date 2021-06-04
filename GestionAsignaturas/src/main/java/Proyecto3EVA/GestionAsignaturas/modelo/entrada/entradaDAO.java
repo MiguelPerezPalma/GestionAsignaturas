@@ -17,7 +17,7 @@ import javafx.collections.ObservableList;
 
 public class entradaDAO extends entrada{
 	private static final String GETBCOD="SELECT fecha,Cod,Nombre,informacion,id_Asignatura as Asignatura FROM entrada WHERE Cod=";
-	private final static String INSERTUPDATE="INSERT INTO entrada (fecha,Cod,Nombre,informacion,id_Asignatura) ";
+	private final static String INSERTUPDATE="INSERT INTO entrada (fecha,Cod,Nombre,informacion,id_Asignatura) VALUES(?,?,?,?,?)";
 	private static final String DELETE="DELETE FROM entrada WHERE Cod=?";
 	private final static String SELECTENTRADA = "SELECT * FROM entrada ";
 	public entradaDAO(LocalDate fecha, String nombre, int cod, String informacion, int asignatura) {
@@ -91,6 +91,7 @@ public class entradaDAO extends entrada{
 				q.setInt(1, this.Cod);
 				rs =q.executeUpdate();
 				this.Cod=-1;
+				
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

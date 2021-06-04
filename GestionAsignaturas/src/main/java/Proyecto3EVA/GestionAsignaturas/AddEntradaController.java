@@ -34,7 +34,6 @@ public class AddEntradaController {
 	@FXML
 	private ChoiceBox<String> AsignaturaCHB;
 	
-	List<entrada> le=entradaDAO.buscarTodasEntradas();
 	List<Asignatura> la=AsignaturaDAO.buscarTodasAsignaturas();
 	@FXML
 	public void initialize() {

@@ -22,7 +22,6 @@ public class Asignatura {
 	}
 	public Asignatura(String nombre) {
 		super();
-		Id = -1;
 		Nombre = nombre;
 	}
 	public Asignatura() {
