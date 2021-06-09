@@ -15,6 +15,11 @@ public class Asignatura {
 		this.entradas = entradas;
 	}
 	
+	public Asignatura(int id) {
+		super();
+		Id = id;
+	}
+
 	public Asignatura(int id, String nombre) {
 		super();
 		Id = id;

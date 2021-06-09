@@ -29,9 +29,6 @@ public class AddEntradaController {
 	private TextArea AnotacionTexA;
 	
 	@FXML
-	private DatePicker FechaDP;
-	
-	@FXML
 	private ChoiceBox<String> AsignaturaCHB;
 	
 	List<Asignatura> la=AsignaturaDAO.buscarTodasAsignaturas();
@@ -47,7 +44,7 @@ public class AddEntradaController {
 		
 			String nombre=NombreTexF.getText();
 			String informacion =AnotacionTexA.getText();
-			LocalDate fecha=FechaDP.getValue();
+			LocalDate fecha=LocalDate.now();
 			String nAs=AsignaturaCHB.getSelectionModel().getSelectedItem();
 			int idAS=0;
 			for(Asignatura as:la) {

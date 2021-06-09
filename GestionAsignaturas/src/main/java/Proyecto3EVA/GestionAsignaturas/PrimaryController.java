@@ -61,9 +61,12 @@ public class PrimaryController {
 	private void borrarAsignatura() {
 		int id=Integer.parseInt(idcolumna.getText());
 		if(id>=0) {
-			AsignaturaDAO a=new AsignaturaDAO();
+			Asignatura as=new Asignatura(id);
+			AsignaturaDAO a=new AsignaturaDAO(as);
 			a.eliminar();
 			asignaturas.remove(a);
+			
+			
 		}
 	}
 	@FXML

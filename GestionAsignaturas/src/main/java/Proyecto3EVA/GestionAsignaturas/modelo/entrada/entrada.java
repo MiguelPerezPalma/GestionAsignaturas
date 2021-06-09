@@ -21,16 +21,21 @@ public class entrada {
 		this.asignatura_id=asignatura;
 	}
 	
-	public entrada(LocalDate fecha, String nombre, String informacion, int asignatura_Nombre) {
+	public entrada(LocalDate fecha, String nombre, String informacion, int asignatura) {
 		super();
 		this.fecha = fecha;
 		Nombre = nombre;
 		Informacion = informacion;
-		this.asignatura_id = asignatura_Nombre;
+		this.asignatura_id = asignatura;
 	}
 
 	public entrada() {
 		this(null,"",-1,"",-1);
+	}
+	
+	public entrada(int cod) {
+		super();
+		Cod = cod;
 	}
 
 	public LocalDate getFecha() {

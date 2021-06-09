@@ -1,10 +1,12 @@
 package Proyecto3EVA.GestionAsignaturas;
 
 import java.io.IOException;
+import java.sql.Date;
 import java.util.List;
 
 import Proyecto3EVA.GestionAsignaturas.modelo.entrada.entrada;
 import Proyecto3EVA.GestionAsignaturas.modelo.entrada.entradaDAO;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -47,6 +49,7 @@ public class SecondaryController {
     	muestraInfo(null);
     	codColumna.setCellValueFactory(new PropertyValueFactory<entrada, Integer>("Cod"));
     	asignaturacolumna.setCellValueFactory(new PropertyValueFactory<entrada, Integer>("asignatura_id"));
+    	
     	configuratable();
     	List<entrada> todas=entradaDAO.buscarTodasEntradas();
     	tableEntradas.setItems(FXCollections.observableList(todas));
@@ -56,12 +59,6 @@ public class SecondaryController {
     }
 	
     private void configuratable() {
-    	fechaColumna.setCellValueFactory(cadaentrada->{
-    		SimpleStringProperty v=new SimpleStringProperty();
-    		String aux=cadaentrada.getValue().getFecha().toString();
-    		v.setValue(aux);
-    		return v;
-    	});
     	nombrecolumna.setCellValueFactory(cadaentrada->{
     		SimpleStringProperty v=new SimpleStringProperty();
     		v.setValue(cadaentrada.getValue().getNombre());
@@ -85,9 +82,11 @@ public class SecondaryController {
 	private void borrarEntradas() {
 		int cod=Integer.parseInt(codColumna.getText());
 		if(cod>=0) {
-			entradaDAO a=new entradaDAO();
-			a.eliminar();
+			entrada e=new entrada(cod);
+			entradaDAO a=new entradaDAO(e);
 			entradas.remove(a);
+			a.eliminar();
+			
 		}
 	}
 }

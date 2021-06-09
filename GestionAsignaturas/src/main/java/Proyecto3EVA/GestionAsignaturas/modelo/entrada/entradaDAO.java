@@ -5,9 +5,12 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 import Proyecto3EVA.GestionAsignaturas.modelo.asignatura.Asignatura;
@@ -17,7 +20,7 @@ import javafx.collections.ObservableList;
 
 public class entradaDAO extends entrada{
 	private static final String GETBCOD="SELECT fecha,Cod,Nombre,informacion,id_Asignatura as Asignatura FROM entrada WHERE Cod=";
-	private final static String INSERTUPDATE="INSERT INTO entrada (fecha,Cod,Nombre,informacion,id_Asignatura) VALUES(?,?,?,?,?)";
+	private final static String INSERT="INSERT INTO entrada (Cod,Nombre,informacion,asignatura_id,fecha) VALUES(?,?,?,?,?)";
 	private static final String DELETE="DELETE FROM entrada WHERE Cod=?";
 	private final static String SELECTENTRADA = "SELECT * FROM entrada ";
 	public entradaDAO(LocalDate fecha, String nombre, int cod, String informacion, int asignatura) {
@@ -46,8 +49,8 @@ public class entradaDAO extends entrada{
 				ResultSet rs =st.executeQuery(q);
 				while(rs.next()) {
 					
-					this.Cod=rs.getInt("cod");
-					this.Nombre=rs.getString("nombre");
+					this.Cod=rs.getInt("Cod");
+					this.Nombre=rs.getString("Nombre");
 					this.Informacion=rs.getString("informacion");
 					
 					
@@ -65,13 +68,14 @@ public class entradaDAO extends entrada{
 		
 		if (con != null) {
 			try {
-				PreparedStatement q=con.prepareStatement(INSERTUPDATE);
+				System.out.println(fecha);
+				System.out.println(java.sql.Date.valueOf(this.fecha));
+				PreparedStatement q=con.prepareStatement(INSERT);
 				q.setInt(1, this.Cod);
 				q.setString(2, this.Nombre);
 				q.setString(3, this.Informacion);
-
-
 				q.setInt(4, this.asignatura_id);
+				q.setDate(5, java.sql.Date.valueOf(fecha));
 				rs =q.executeUpdate();		
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
