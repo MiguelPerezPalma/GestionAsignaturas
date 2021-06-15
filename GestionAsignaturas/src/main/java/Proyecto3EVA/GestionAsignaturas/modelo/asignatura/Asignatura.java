@@ -30,7 +30,7 @@ public class Asignatura {
 		Nombre = nombre;
 	}
 	public Asignatura() {
-		this(-1,"",null);
+		this(-1,"Defecto",null);
 	}
 
 	public int getId() {

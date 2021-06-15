@@ -11,10 +11,10 @@ import java.util.List;
 
 public class Conexion {
 	private static Connection con;
-	private final static String server="jdbc:mysql://localhost";
-	private final static String database="instituto";
-	private final static String username="root";
-	private final static String password="";
+	private final static String server=XMLReader.getConectionInfo("server");
+	private final static String database=XMLReader.getConectionInfo("database");
+	private final static String username=XMLReader.getConectionInfo("user");
+	private final static String password=XMLReader.getConectionInfo("password");
 	
 	public static void conecta() {
 		 try {

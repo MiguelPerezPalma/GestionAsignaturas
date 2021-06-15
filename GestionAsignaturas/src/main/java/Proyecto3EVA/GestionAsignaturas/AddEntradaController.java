@@ -45,6 +45,7 @@ public class AddEntradaController {
 			String nombre=NombreTexF.getText();
 			String informacion =AnotacionTexA.getText();
 			LocalDate fecha=LocalDate.now();
+			Date d=java.sql.Date.valueOf(fecha);
 			String nAs=AsignaturaCHB.getSelectionModel().getSelectedItem();
 			int idAS=0;
 			for(Asignatura as:la) {
@@ -52,14 +53,14 @@ public class AddEntradaController {
 						idAS=as.getId();
 					}
 			}
-			entrada e=new entrada(fecha, nombre, informacion, idAS);
+			entrada e=new entrada(d, nombre, informacion, idAS);
 			entradaDAO eda=new entradaDAO(e);
 			eda.guardar();
 		App.setRoot("secondary");
 	}
 	@FXML
 	private void switchToAsignatura() throws IOException {
-		App.setRoot("primary");
+		App.setRoot("secondary");;
 	}
     @FXML
     public void closeApp() {

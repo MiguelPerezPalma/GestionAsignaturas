@@ -23,9 +23,15 @@ public class AddAsignaturaController {
 	@FXML
 	private void guardarAsignatura() throws IOException {
 		String nombre=NombreTexF.getText();
+		if(nombre.isBlank()) {
+		Asignatura a=new Asignatura();
+		AsignaturaDAO ada=new AsignaturaDAO(a);
+		ada.guardar();	
+		}else {
 		Asignatura a=new Asignatura(nombre);
 		AsignaturaDAO ada=new AsignaturaDAO(a);
 		ada.guardar();
+		}
 		App.setRoot("primary");
 	}
 	

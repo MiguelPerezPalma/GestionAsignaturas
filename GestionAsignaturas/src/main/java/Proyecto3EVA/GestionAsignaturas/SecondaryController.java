@@ -22,7 +22,7 @@ public class SecondaryController {
     private TableView<entrada> tableEntradas;
     
     @FXML
-    private TableColumn<entrada, String> fechaColumna;
+    private TableColumn<entrada, Date> fechaColumna;
     
     @FXML
     private TableColumn<entrada, String> nombrecolumna;
@@ -31,10 +31,13 @@ public class SecondaryController {
     private TableColumn<entrada, Integer> codColumna;
     
     @FXML
-    private TableColumn<entrada, Integer> asignaturacolumna;
+    private TableColumn<entrada, String> asignaturacolumna;
     
     @FXML
     private Label informacionLabel;
+    
+    @FXML
+    private Label codLabel;
     
     @FXML
     private MenuItem con;
@@ -48,8 +51,7 @@ public class SecondaryController {
     protected void initialize() {
     	muestraInfo(null);
     	codColumna.setCellValueFactory(new PropertyValueFactory<entrada, Integer>("Cod"));
-    	asignaturacolumna.setCellValueFactory(new PropertyValueFactory<entrada, Integer>("asignatura_id"));
-    	
+    	fechaColumna.setCellValueFactory(new PropertyValueFactory<entrada, Date>("fecha"));
     	configuratable();
     	List<entrada> todas=entradaDAO.buscarTodasEntradas();
     	tableEntradas.setItems(FXCollections.observableList(todas));
@@ -64,29 +66,41 @@ public class SecondaryController {
     		v.setValue(cadaentrada.getValue().getNombre());
     		return v;
     	});
+    	asignaturacolumna.setCellValueFactory(cadaentrada->{
+    		SimpleStringProperty v=new SimpleStringProperty();
+    		v.setValue(Integer.toString(cadaentrada.getValue().getAsignatura()));
+    		return v;
+    	});
     }
 	@FXML
 	private void switchToAñadirEntrada() throws IOException {
 		App.setRoot("AddEntrada");
 	}
+	@FXML
+	private void switchToAsignatura() throws IOException {
+		App.setRoot("primary");
+	}
 	
     private void muestraInfo(entrada e) {
     	if (e!=null) {
     		informacionLabel.setText(e.getInformacion());
-
+    		codLabel.setText(Integer.toString(e.getCod()));
 		}else {
 			informacionLabel.setText("");
+			codLabel.setText("");
 		}
     }
+    
 	@FXML
-	private void borrarEntradas() {
-		int cod=Integer.parseInt(codColumna.getText());
-		if(cod>=0) {
+	private void borrarEntradas() throws IOException {
+		
+		int cod=Integer.parseInt(codLabel.getText());
+		if(cod>=-1) {
 			entrada e=new entrada(cod);
 			entradaDAO a=new entradaDAO(e);
 			entradas.remove(a);
 			a.eliminar();
-			
+			App.setRoot("secondary");
 		}
 	}
 }

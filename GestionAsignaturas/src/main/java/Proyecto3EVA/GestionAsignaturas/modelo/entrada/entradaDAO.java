@@ -11,8 +11,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
-import java.util.Date;
-
+import java.sql.Date;
 import Proyecto3EVA.GestionAsignaturas.modelo.asignatura.Asignatura;
 import Proyecto3EVA.GestionAsignaturas.utils.Conexion;
 import javafx.collections.FXCollections;
@@ -23,10 +22,13 @@ public class entradaDAO extends entrada{
 	private final static String INSERT="INSERT INTO entrada (Cod,Nombre,informacion,asignatura_id,fecha) VALUES(?,?,?,?,?)";
 	private static final String DELETE="DELETE FROM entrada WHERE Cod=?";
 	private final static String SELECTENTRADA = "SELECT * FROM entrada ";
-	public entradaDAO(LocalDate fecha, String nombre, int cod, String informacion, int asignatura) {
-		super(fecha, nombre, cod, informacion, asignatura);
-	}
+	
+	
 
+	public entradaDAO(Date fecha, String nombre, int cod, String informacion, int asignatura) {
+		super(fecha, nombre, cod, informacion, asignatura);
+		
+	}
 	public entradaDAO() {
 		super();
 	}
@@ -52,8 +54,8 @@ public class entradaDAO extends entrada{
 					this.Cod=rs.getInt("Cod");
 					this.Nombre=rs.getString("Nombre");
 					this.Informacion=rs.getString("informacion");
-					
-					
+					this.asignatura_id=rs.getInt("asignatura_id");
+					this.setFecha(rs.getDate("fecha"));
 				}			
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
@@ -68,14 +70,12 @@ public class entradaDAO extends entrada{
 		
 		if (con != null) {
 			try {
-				System.out.println(fecha);
-				System.out.println(java.sql.Date.valueOf(this.fecha));
 				PreparedStatement q=con.prepareStatement(INSERT);
 				q.setInt(1, this.Cod);
 				q.setString(2, this.Nombre);
 				q.setString(3, this.Informacion);
 				q.setInt(4, this.asignatura_id);
-				q.setDate(5, java.sql.Date.valueOf(fecha));
+				q.setDate(5, this.fecha);
 				rs =q.executeUpdate();		
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
@@ -95,7 +95,10 @@ public class entradaDAO extends entrada{
 				q.setInt(1, this.Cod);
 				rs =q.executeUpdate();
 				this.Cod=-1;
-				
+				this.Nombre="";
+				this.Informacion="";
+				this.asignatura_id=-1;
+				this.fecha=null;
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -116,6 +119,8 @@ public class entradaDAO extends entrada{
 					a.setCod(rs.getInt("Cod"));
 					a.setNombre(rs.getString("Nombre"));
 					a.setInformacion(rs.getString("Informacion"));
+					a.setFecha(rs.getDate("fecha"));
+					a.setAsignatura(rs.getInt("asignatura_id"));
 					System.out.println(a);
 					result.add(a);
 				}

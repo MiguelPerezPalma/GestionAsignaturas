@@ -10,6 +10,7 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -27,7 +28,8 @@ public class PrimaryController {
     
     @FXML
     private TableColumn<Asignatura, String> nombrecolumna;
-    
+    @FXML
+    private Label idLabel;
     @FXML
     private MenuItem con;
     @FXML
@@ -37,12 +39,15 @@ public class PrimaryController {
     
 	@FXML
 	public void initialize() {
-		
+		muestraInfo(null);
 		idcolumna.setCellValueFactory(new PropertyValueFactory<Asignatura, Integer>("id"));
 		configuratable();
 		AsignaturaDAO a = new AsignaturaDAO();
     	List<Asignatura> todas=AsignaturaDAO.buscarTodasAsignaturas();
     	tableAsignaturas.setItems(FXCollections.observableList(todas));
+    	tableAsignaturas.getSelectionModel().selectedItemProperty().addListener((Observable,oldValue,newValue)->{
+    		muestraInfo(newValue);
+    	});
 	}
 	
 	private void configuratable() {
@@ -52,20 +57,27 @@ public class PrimaryController {
     		return v;
     	});
     }
-	
+    private void muestraInfo(Asignatura a) {
+    	if (a!=null) {
+    		idLabel.setText(Integer.toString(a.getId()));
+    		
+		}else {
+			idLabel.setText("");
+		}
+    }
 	@FXML
 	private void switchToAñadirAsignatura() throws IOException {
 		App.setRoot("AddAsignatura");
 	}
 	@FXML
-	private void borrarAsignatura() {
-		int id=Integer.parseInt(idcolumna.getText());
-		if(id>=0) {
+	private void borrarAsignatura() throws IOException {
+		int id=Integer.parseInt(idLabel.getText());
+		if(id>=-1) {
 			Asignatura as=new Asignatura(id);
 			AsignaturaDAO a=new AsignaturaDAO(as);
 			a.eliminar();
 			asignaturas.remove(a);
-			
+			App.setRoot("primary");
 			
 		}
 	}
