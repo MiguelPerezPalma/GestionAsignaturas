@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.sql.Date;
 import java.util.List;
 
+import Proyecto3EVA.GestionAsignaturas.modelo.asignatura.Asignatura;
+import Proyecto3EVA.GestionAsignaturas.modelo.asignatura.AsignaturaDAO;
 import Proyecto3EVA.GestionAsignaturas.modelo.entrada.entrada;
 import Proyecto3EVA.GestionAsignaturas.modelo.entrada.entradaDAO;
 import javafx.beans.property.SimpleIntegerProperty;
@@ -66,21 +68,57 @@ public class SecondaryController {
     		v.setValue(cadaentrada.getValue().getNombre());
     		return v;
     	});
-    	asignaturacolumna.setCellValueFactory(cadaentrada->{
+    	/*
+    	 * Solo mostraria el ID de asignatura
+    	 * asignaturacolumna.setCellValueFactory(cadaentrada->{
     		SimpleStringProperty v=new SimpleStringProperty();
     		v.setValue(Integer.toString(cadaentrada.getValue().getAsignatura()));
     		return v;
+    	});*/
+    	asignaturacolumna.setCellValueFactory(cadaentrada->{
+    		SimpleStringProperty v=new SimpleStringProperty();
+    		List<Asignatura> la=AsignaturaDAO.buscarTodasAsignaturas();
+    		int idas=cadaentrada.getValue().getAsignatura();
+    		for(Asignatura as:la) {
+    			if(idas==as.getId()) {
+    				String nombre=as.getNombre();
+    				v.setValue(nombre);
+    			}
+    		}
+    		return v;
     	});
     }
+	/**
+	 * Ruta a AddEntradaController
+	 * @throws IOException
+	 */
 	@FXML
 	private void switchToAñadirEntrada() throws IOException {
 		App.setRoot("AddEntrada");
 	}
+	/**
+	 * Ruta a EditEntradaController
+	 * @throws IOException
+	 */
+	@FXML
+	private void switchToEditEntrada() throws IOException {
+		App.setRoot("EditEntrada");
+	}
+	/**
+	 * Ruta a PrimaryController
+	 * @throws IOException
+	 */
 	@FXML
 	private void switchToAsignatura() throws IOException {
 		App.setRoot("primary");
 	}
-	
+	/**
+	 * muestrainfo es llamada en configurable
+	 * rellena los campos informacionLable y
+	 * CodLabel, este actua como auxiliar para facilitarme al borrar
+	 * y aparece como invisible en la Aplicacion
+	 * @param e 
+	 */
     private void muestraInfo(entrada e) {
     	if (e!=null) {
     		informacionLabel.setText(e.getInformacion());

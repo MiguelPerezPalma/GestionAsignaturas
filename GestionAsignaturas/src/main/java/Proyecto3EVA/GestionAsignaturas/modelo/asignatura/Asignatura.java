@@ -19,6 +19,7 @@ public class Asignatura {
 		super();
 		Id = id;
 	}
+	
 
 	public Asignatura(int id, String nombre) {
 		super();
@@ -54,7 +55,7 @@ public class Asignatura {
 
 	@Override
 	public String toString() {
-		return "Asignatura [Id=" + Id + ", Nombre=" + Nombre + ", entradas=" + entradas + "]";
+		return "Asignatura [Id=" + Id + ", Nombre=" + Nombre + " ]";
 	}
 	
 }

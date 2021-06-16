@@ -36,7 +36,9 @@ public class PrimaryController {
     public void closeApp() {
     	System.exit(0);
     }
-    
+    /**
+     * 
+     */
 	@FXML
 	public void initialize() {
 		muestraInfo(null);
@@ -57,6 +59,12 @@ public class PrimaryController {
     		return v;
     	});
     }
+	/**
+	 * Rellena el campo idLabel que aparecera invisible
+	 * este se usa como auxiliar para facilitarme la operacion
+	 * de borrar
+	 * @param a 
+	 */
     private void muestraInfo(Asignatura a) {
     	if (a!=null) {
     		idLabel.setText(Integer.toString(a.getId()));

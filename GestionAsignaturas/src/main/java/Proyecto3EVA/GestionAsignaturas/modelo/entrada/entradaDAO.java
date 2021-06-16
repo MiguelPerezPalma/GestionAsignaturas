@@ -19,9 +19,10 @@ import javafx.collections.ObservableList;
 
 public class entradaDAO extends entrada{
 	private static final String GETBCOD="SELECT fecha,Cod,Nombre,informacion,id_Asignatura as Asignatura FROM entrada WHERE Cod=";
-	private final static String INSERT="INSERT INTO entrada (Cod,Nombre,informacion,asignatura_id,fecha) VALUES(?,?,?,?,?)";
+	private static final String INSERT="INSERT INTO entrada (Cod,Nombre,informacion,asignatura_id,fecha) VALUES(?,?,?,?,?)";
+	private static final String INSERTUPDATE="INSERT INTO entrada (Cod,Nombre,informacion,asignatura_id,fecha) VALUES(?,?,?,?,?) ON DUPLICATE KEY UPDATE Nombre=?,informacion=?,fecha=?";
 	private static final String DELETE="DELETE FROM entrada WHERE Cod=?";
-	private final static String SELECTENTRADA = "SELECT * FROM entrada ";
+	private static final String SELECTENTRADA = "SELECT * FROM entrada ";
 	
 	
 
@@ -76,6 +77,30 @@ public class entradaDAO extends entrada{
 				q.setString(3, this.Informacion);
 				q.setInt(4, this.asignatura_id);
 				q.setDate(5, this.fecha);
+				rs =q.executeUpdate();		
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return rs;
+	}
+	
+	public int guardarEditar() {
+		int rs=0;
+		Connection con = Conexion.getConexion();
+		
+		if (con != null) {
+			try {
+				PreparedStatement q=con.prepareStatement(INSERTUPDATE);
+				q.setInt(1, this.Cod);
+				q.setString(2, this.Nombre);
+				q.setString(3, this.Informacion);
+				q.setInt(4, this.asignatura_id);
+				q.setDate(5, this.fecha);
+				q.setString(6, this.Nombre);
+				q.setString(7, this.Informacion);
+				q.setDate(8, this.fecha);
 				rs =q.executeUpdate();		
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block

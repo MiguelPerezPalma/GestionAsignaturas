@@ -16,7 +16,7 @@
          <menus>
             <Menu fx:id="con" mnemonicParsing="false" text="File">
                <items>
-                  <MenuItem mnemonicParsing="false" onAction="#closeApp" text="Guardar" />
+                  <MenuItem mnemonicParsing="false" onAction="#closeApp" text="Cerrar" />
                </items>
             </Menu>
             <Menu mnemonicParsing="false" text="Help">
@@ -53,7 +53,8 @@
                               <Button layoutX="22.0" layoutY="21.0" mnemonicParsing="false" onAction="#switchToAñadirEntrada" prefWidth="74.0" text="Añadir" AnchorPane.leftAnchor="22.0" />
                               <Button layoutX="377.0" layoutY="20.0" mnemonicParsing="false" onAction="#borrarEntradas" prefHeight="26.0" prefWidth="74.0" text="Borrar" AnchorPane.rightAnchor="14.200000000000045" />
                               <Label fx:id="codLabel" layoutX="8.0" layoutY="47.0" text="Label" textFill="TRANSPARENT" />
-                              <Button layoutX="193.0" layoutY="20.0" mnemonicParsing="false" onAction="#switchToAsignatura" text="Asignaturas" textAlignment="CENTER" />
+                              <Button layoutX="258.0" layoutY="20.0" mnemonicParsing="false" onAction="#switchToAsignatura" text="Asignaturas" textAlignment="CENTER" />
+                              <Button layoutX="186.0" layoutY="20.0" mnemonicParsing="false" onAction="#switchToEditEntrada" text="Editar" />
                            </children>
                         </AnchorPane>
                     </items>

@@ -16,6 +16,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
@@ -27,7 +28,8 @@ public class AddEntradaController {
 	
 	@FXML
 	private TextArea AnotacionTexA;
-	
+    @FXML
+    private MenuItem con;
 	@FXML
 	private ChoiceBox<String> AsignaturaCHB;
 	
@@ -38,7 +40,14 @@ public class AddEntradaController {
 			AsignaturaCHB.getItems().add(as.getNombre());
 		}
 	}
-	
+	/**
+	 * Identifico el ID de la Asignatura seleccionada usando una lista de asignaturas LA
+	 * Se incerta fecha actual
+	 * Guardo los datos introducidos en NombreTexF, AnotacionTexA.
+	 * Guardo los datos en una nueva entrada y cargo la entrada en una nueva entradaDAO
+	 * entradaDAO se guarda en la Base de datos
+	 * @throws IOException
+	 */
 	@FXML
 	private void guardadEntrada() throws IOException {
 		
@@ -58,8 +67,12 @@ public class AddEntradaController {
 			eda.guardar();
 		App.setRoot("secondary");
 	}
+	/**
+	 * Ruta a SecondaryController
+	 * @throws IOException
+	 */
 	@FXML
-	private void switchToAsignatura() throws IOException {
+	private void switchToEntrada() throws IOException {
 		App.setRoot("secondary");;
 	}
     @FXML
