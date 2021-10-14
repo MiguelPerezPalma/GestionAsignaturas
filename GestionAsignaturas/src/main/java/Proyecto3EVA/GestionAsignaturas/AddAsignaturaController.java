@@ -19,7 +19,7 @@ public class AddAsignaturaController {
     public void closeApp() {
     	System.exit(0);
     }
-	f
+	
 	@FXML
 	private void guardarAsignatura() throws IOException {
 		String nombre=NombreTexF.getText();
